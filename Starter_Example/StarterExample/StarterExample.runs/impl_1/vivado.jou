@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Wed Oct 12 11:08:34 2022
+# Process ID: 9620
+# Current directory: C:/Users/13372/Documents/GitHub/VHDL_Digital_Systems_Design_Examples/Starter_Example/StarterExample/StarterExample.runs/impl_1
+# Command line: vivado.exe -log First_System.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source First_System.tcl -notrace
+# Log file: C:/Users/13372/Documents/GitHub/VHDL_Digital_Systems_Design_Examples/Starter_Example/StarterExample/StarterExample.runs/impl_1/First_System.vdi
+# Journal file: C:/Users/13372/Documents/GitHub/VHDL_Digital_Systems_Design_Examples/Starter_Example/StarterExample/StarterExample.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source First_System.tcl -notrace

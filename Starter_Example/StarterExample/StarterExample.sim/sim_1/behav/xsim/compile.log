@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/13372/Documents/GitHub/VHDL_Digital_Systems_Design_Examples/Starter_Example/StarterExample/StarterExample.srcs/sources_1/new/First_System.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'First_System'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/13372/Documents/GitHub/VHDL_Digital_Systems_Design_Examples/Starter_Example/StarterExample/StarterExample.srcs/sim_1/new/First_System_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'First_System_tb'
