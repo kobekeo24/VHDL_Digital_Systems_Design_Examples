@@ -1,0 +1,11 @@
+# not code files produced by Vivado
+*.wdf
+*.xml
+*.wbd
+*.log
+*.jou
+*.info
+*.ini
+*.wpc
+*.lpr
+
