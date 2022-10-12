@@ -8,4 +8,6 @@
 *.ini
 *.wpc
 *.lpr
+*.pb
+*.bat
 
