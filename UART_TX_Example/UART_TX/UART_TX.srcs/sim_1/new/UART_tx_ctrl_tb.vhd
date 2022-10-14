@@ -42,15 +42,25 @@ signal clk_t    : std_logic := '0';
 signal data_t   : std_logic_vector (7 downto 0) := x"41";
 signal ready_t  : std_logic := '0';
 signal uart_tx_t: std_logic := '1';
+signal btn_t    : std_logic := '0';
 
-component UART_TX_CTRL
-generic(baud : integer := 9600);
+component debounce is
+generic(delay : integer := 20);
+port(btn   : in std_logic;
+     clk    : in std_logic;
+     btn_ctr: out std_logic);
+end component debounce;
+
+component UART_TX_CTRL is
+generic(baud : integer := 232000);
 port(send   : in std_logic;
      clk    : in std_logic;
      data   : in std_logic_vector (7 downto 0);
      ready  : out std_logic;
      uart_tx: out std_logic);
-end component;
+end component UART_TX_CTRL;
+
+
 
 begin
 clk_t <= not clk_t after 5 ns;
@@ -60,12 +70,25 @@ UUT: UART_TX_CTRL port map (send => send_t,
                             data => data_t,
                             ready => ready_t,
                             uart_tx => uart_tx_t);
+                           
+UUT2: debounce port map (btn => btn_t,
+                                 clk => clk_t,
+                                 btn_ctr => send_t);   
+                                   
 
 Stimulus_process: process is
 begin
     wait for 200ns;
-    send_t <= '1'; wait for 1000us;
+    btn_t <= '1'; wait for 30ns;
+    btn_t <= '0'; wait for 30ns;
+    btn_t <= '1'; wait for 1000ns;
+    btn_t <= '0'; wait for 30ns;
+    wait until ready_t = '1';
     data_t <= x"AE"; wait for 1us;
+    btn_t <= '1'; wait for 30ns;
+    btn_t <= '0'; wait for 30ns;
+    btn_t <= '1'; wait for 1000ns;
+    
 end process;
 
 

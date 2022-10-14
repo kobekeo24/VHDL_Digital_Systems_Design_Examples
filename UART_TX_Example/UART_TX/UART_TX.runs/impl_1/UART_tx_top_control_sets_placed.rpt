@@ -1,0 +1,90 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+| Date         : Fri Oct 14 19:13:10 2022
+| Host         : DESKTOP-557APNO running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file UART_tx_top_control_sets_placed.rpt
+| Design       : UART_tx_top
+| Device       : xc7a35t
+----------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    12 |
+|    Minimum number of control sets                        |    12 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    32 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    12 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |     1 |
+| >= 6 to < 8        |     4 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     4 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               7 |            4 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              58 |           17 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              95 |           25 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+---------------------------+---------------------------+------------------+----------------+--------------+
+|  Clock Signal  |       Enable Signal       |      Set/Reset Signal     | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+---------------------------+---------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | TX/txBit                  |                           |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | TX/wait_timer             |                           |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | dbc/current_state_i_1_n_0 |                           |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | TX/bitIndex               |                           |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG |                           |                           |                4 |              7 |         1.75 |
+|  clk_IBUF_BUFG | TX/txData                 |                           |                3 |              7 |         2.33 |
+|  clk_IBUF_BUFG | dbc/E[0]                  |                           |                1 |              7 |         7.00 |
+|  clk_IBUF_BUFG | uartData                  |                           |                1 |              7 |         7.00 |
+|  clk_IBUF_BUFG | TX/StrIndex               |                           |                8 |             30 |         3.75 |
+|  clk_IBUF_BUFG | TX/wait_timer             | TX/wait_timer_reg[18]     |                8 |             31 |         3.88 |
+|  clk_IBUF_BUFG | TX/timer_0                | TX/timer[31]_i_1_n_0      |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | dbc/count                 | dbc/current_state_i_1_n_0 |                8 |             32 |         4.00 |
++----------------+---------------------------+---------------------------+------------------+----------------+--------------+
+
+
