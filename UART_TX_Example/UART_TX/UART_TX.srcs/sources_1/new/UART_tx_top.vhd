@@ -77,27 +77,27 @@ if rising_edge(clk) then
 btnC_prev <= btnCclr;
 case state is
 when TX_WAIT_BTN =>
-    if(btnCclr = '1' and btnC_prev = '0') then
+    --if btnC_prev = '0' and btnCclr = '1' then
         initStr <=  helloStr((StrIndex+7) downto StrIndex);
         state <= TX_SEND_CHAR;
-    end if;    
+    --end if;
 when TX_SEND_CHAR =>
-    uartData <= initStr;
-    state <= TX_LOAD_NEXT_CHAR;
+    if(StrIndex < 40) then
+        uartData <= initStr;
+        initStr <=  helloStr((StrIndex+7) downto StrIndex);
+        StrIndex <= StrIndex + 8; 
+         state <= TX_LOAD_NEXT_CHAR;
+    else
+        state <= TX_SEND_WAIT;
+    end if;
+   
 when TX_LOAD_NEXT_CHAR =>
     if uartRdy = '1' then  
         state <= TX_SEND_CHAR;
-        if(StrIndex <= 32) then
-            initStr <=  helloStr((StrIndex+7) downto StrIndex);
-            StrIndex <= StrIndex + 8; 
-            state <= TX_SEND_CHAR;
-        else
-            StrIndex <= 0;
-            state <= TX_SEND_WAIT;
-        end if;
     end if;
 when TX_SEND_WAIT =>
-    if uartRdy = '1' then    
+    if uartRdy = '1' then   
+        StrIndex <= 0; 
         state <= TX_WAIT_BTN;
     end if;
 end case;
@@ -105,10 +105,10 @@ end if;
 end process;
 
 --StrIndex <= 0 when(StrIndex >= 32 and state = TX_SEND_WAIT) else StrIndex+8;
-uartSend <= '1' when (state = TX_SEND_CHAR or state = TX_LOAD_NEXT_CHAR) else '0';
-TX : UART_tx_ctrl generic map(baud => 230400)
+uartSend <= '1' when (state = TX_SEND_CHAR) else '0';
+TX : UART_tx_ctrl generic map(baud => 19200)
 port map(send => uartSend, data => uartData, clk => clk, ready => uartRdy, uart_tx => RsTx);
 
-dbc: debounce generic map(delay => 650/10)
+dbc: debounce generic map(delay => 50000000/10)
 port map(btn => btnC,clk => clk ,btn_ctr => btnCclr);
 end Behavioral;
